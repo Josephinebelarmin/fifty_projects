@@ -36,6 +36,7 @@ async function getUser(username){
     const { data } = await  axios(APIURL + username)
     // console.log(data)
     createUserCard(data)
+    getRepos(username)
     }
     // catch(err){
     //     console.log(err)
@@ -47,6 +48,26 @@ async function getUser(username){
         }
     }
  }
+
+ async function getRepos(username){
+    try{
+        // to retrive latest 10 repos use ?sort=created
+    const { data } = await  axios(APIURL + username + '/repos?sort=created')
+    // console.log(data)
+    addReposToCard(data)
+    }
+    // catch(err){
+    //     console.log(err)
+    // }
+
+    catch(err){
+        createErrorCard('Error in fetching Repositories')
+        console.log(err)
+    
+    }
+ }
+
+
 
  function createUserCard(user){
     const cardHTML = `
@@ -64,9 +85,6 @@ async function getUser(username){
                     <li>${user.public_repos} <strong>Repos</strong></li>
                 </ul>
                 <div id="repos">
-                    <a href="#" class="repos">Repo1</a>
-                    <a href="#" class="repos">Repo2</a>
-                    <a href="#" class="repos">Repo3</a>
                 </div>
             </div>
         </div>
@@ -85,6 +103,23 @@ function createErrorCard(msg){
     `
 
     main.innerHTML = cardHTML
+}
+
+
+function addReposToCard(repos){
+
+    const reposEl = document.getElementById('repos')
+
+    repos.slice(0, 10).forEach(repo => {
+        const repoEl = document.createElement('a')
+            repoEl.classList.add('repos')
+            repoEl.href = repo.html_url
+            repoEl.target = '_blank'
+            repoEl.innerText = repo.name
+            
+            reposEl.appendChild(repoEl)
+        });
+
 }
  form.addEventListener('submit', (e) =>{
     e.preventDefault()
