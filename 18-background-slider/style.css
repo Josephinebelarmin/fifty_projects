@@ -11,7 +11,7 @@ body{
     align-items: center;
     overflow: hidden;
     height: 100vh;
-    background-image: url('https://images.unsplash.com/photo-1602600220542-f3b3b7f3bf1c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80');
+    /* background-image: url('https://images.unsplash.com/photo-1602600220542-f3b3b7f3bf1c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80'); */
     background-position: center center;/* x and y axis */
     background-size: cover;
     transition: 0.6s;
@@ -58,7 +58,7 @@ body::before{
     background-color: transparent;
     font-size: 30px;
     padding: 20px;
-    border: 2px solid orange;
+    border: 2px solid rgb(248, 9, 29);
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
@@ -69,11 +69,13 @@ body::before{
 }
 
 .left-arrow{
+    color: antiquewhite;
     left: calc(15vw - 65px);
     border-right: 0;
 }
 
 .right-arrow{
+    color: antiquewhite;
     right: calc(15vw - 65px);
     border-left: 0;
 }
